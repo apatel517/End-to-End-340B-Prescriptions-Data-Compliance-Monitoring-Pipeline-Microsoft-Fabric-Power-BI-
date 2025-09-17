@@ -88,6 +88,41 @@ Generated using Python and R:
 
 ---
 
+## 📊 Power BI Dashboards
+
+<table>
+  <tr>
+    <td><img src="Dashboards/Homepaged.png" width="400"/></td>
+    <td><img src="Dashboards/summary.png" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Home Page</b></td>
+    <td align="center"><b>Executive Summary Dashboard</b></td>
+  </tr>
+</table>
+
+<br/>
+
+<table>
+  <tr>
+    <td><img src="Dashboards/finance.png" width="400"/></td>
+    <td><img src="Dashboards/patients.png" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Financial Deep Dive Dashboard</b></td>
+    <td align="center"><b>Provider-Specific Dashboard</b></td>
+  </tr>
+</table>
+
+<br/>
+
+<p align="center">
+  <img src="Dashboards/trends.png" width="400"/><br/>
+  <b>Trend and Forecasting Dashboard</b>
+</p>
+
+---
+
 ## ✅ Business Impact
 
 - ⛔ Eliminated manual Excel-based compliance reviews  
@@ -105,8 +140,4 @@ Generated using Python and R:
 - 💻 GitHub: [https://github.com/apatel517](https://github.com/apatel517)
 
 ---
-
-## 📄 View Full Project Documentation
-
-👉 **[Click here to view the complete PDF](./340B-Fabric-Project/340B_Fabric_Portfolio_AsadPatel_Final07.26.pdf)**  
 
