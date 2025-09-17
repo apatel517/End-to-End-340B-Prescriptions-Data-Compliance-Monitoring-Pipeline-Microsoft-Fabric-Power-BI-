@@ -1,0 +1,115 @@
+--Total Rxs 
+
+SELECT 
+DISTINCT count (Composite_Key) as total_rxs
+FROM 
+[Lakehouse_340B_Compliance].[dbo].[Gold_Compliance_Report]
+
+-- Complaint rx vs non-compliant
+
+
+SELECT 
+Compliance_Status, 
+count (Composite_Key) AS PRESCRIPTIONS
+FROM 
+[Lakehouse_340B_Compliance].[dbo].[Gold_Compliance_Report]
+GROUP By 
+Compliance_Status
+
+
+-- Compliance vs non-compliance %
+
+SELECT
+    Compliance_Status,
+    COUNT(Composite_Key) AS PRESCRIPTIONS ,
+    CAST(COUNT(Composite_Key) * 100.0 / SUM(COUNT(Composite_Key)) OVER () AS DECIMAL(10, 2)) AS Percentage
+FROM 
+[Lakehouse_340B_Compliance].[dbo].[Gold_Compliance_Report]
+GROUP BY
+ Compliance_Status
+
+
+--rx by complaince reasons
+
+SELECT 
+Compliance_Reason,
+COUNT(Composite_Key) AS PRESCRIPTIONS 
+FROM 
+[Lakehouse_340B_Compliance].[dbo].[Gold_Compliance_Report]
+where 
+Compliance_Reason != 'Compliant'
+GROUP by 
+Compliance_Reason
+
+
+-- non complaint rxs by clinic
+
+SELECT 
+location_name,
+COUNT(Composite_Key) AS PRESCRIPTIONS 
+FROM
+ [Lakehouse_340B_Compliance].[dbo].[Gold_Compliance_Report]
+where 
+Compliance_Reason != 'Compliant'
+GROUP by 
+location_name
+
+
+-- complaint rxs by clinic
+
+SELECT 
+location_name,
+COUNT(Composite_Key) AS PRESCRIPTIONS 
+FROM 
+[Lakehouse_340B_Compliance].[dbo].[Gold_Compliance_Report]
+where 
+Compliance_Reason = 'Compliant'
+GROUP by
+ location_name
+
+-- total drug cost
+
+SELECT
+ DISTINCT COUNT(Composite_Key),
+  FORMAT(SUM(drug_cost) / 1000000, 'N2') + 'M' AS Total_Drug_Cost
+FROM
+ [Lakehouse_340B_Compliance].[dbo].[Gold_Compliance_Report]
+
+-- non-complient drug cost
+
+
+SELECT
+ DISTINCT Compliance_Status ,
+ COUNT(Composite_Key), FORMAT(SUM(drug_cost) / 1000000, 'N2') + 'M' AS Total_Drug_Cost
+FROM 
+[Lakehouse_340B_Compliance].[dbo].[Gold_Compliance_Report]
+WHERE 
+ Compliance_Status != 'Compliant'
+GROUP BY
+ Compliance_Status;
+
+-- complient drug cost 
+
+
+SELECT
+ DISTINCT Compliance_Status ,
+ COUNT(Composite_Key) as prescriptions , FORMAT(SUM(drug_cost) / 1000000, 'N2') + 'M' AS Total_Drug_Cost
+FROM 
+[Lakehouse_340B_Compliance].[dbo].[Gold_Compliance_Report]
+WHERE 
+ Compliance_Status = 'Compliant'
+GROUP BY
+ Compliance_Status
+
+-- cost by non complience reasons
+
+
+SELECT 
+Compliance_Reason,
+COUNT(Composite_Key) as prescriptions, FORMAT(SUM(drug_cost) / 1000000, 'N2') + 'M' AS Total_Drug_Cost
+FROM 
+[Lakehouse_340B_Compliance].[dbo].[Gold_Compliance_Report]
+WHERE  
+Compliance_Reason != 'Compliant'
+GROUP BY 
+Compliance_Reason
