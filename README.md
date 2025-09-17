@@ -13,7 +13,7 @@ Many health systems still check 340B compliance manually using spreadsheets or E
 - Use pivot tables and VLOOKUPs to generate monthly reports.  
 - Slow, error-prone, and reactive.
 
-With thousands of **prescriptions per month**, manual checks cannot scale—and mistakes can cost millions.
+With thousands of **prescriptions per month**, manual checks cannot scale and mistakes can cost millions.
 
 ---
 
